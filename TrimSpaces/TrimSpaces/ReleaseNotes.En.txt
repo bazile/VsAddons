@@ -1,0 +1,4 @@
+﻿v1.0.1
+------------------------------
+
+ + Added more text file extensions

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -40,7 +39,6 @@ namespace VasilyPetruhin.TrimSpaces
         /// </summary>
         public TrimSpacesPackage()
         {
-            Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering constructor for: {0}", this.ToString()));
         }
 
         /////////////////////////////////////////////////////////////////////////////
@@ -53,7 +51,6 @@ namespace VasilyPetruhin.TrimSpaces
         /// </summary>
         protected override void Initialize()
         {
-            Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
 	        DTE dte = GetService(typeof(SDTE)) as DTE;
@@ -66,35 +63,34 @@ namespace VasilyPetruhin.TrimSpaces
 
 	    private static void OnDocumentSaved(Document document)
 	    {
-		    Debug.WriteLine("OnDocumentSaved");
-
-		    //if (document.ReadOnly) return;
-		    //document.Kind
-
-		    //try
-		    //{
-			    if (IsTextFile(document.Name))
-			    {
-				    // Remove trailing whitespace
-				    vsFindResult result = document.DTE.Find.FindReplace(vsFindAction.vsFindActionReplaceAll, "[ \t]+$",
-				                                                        (int) vsFindOptions.vsFindOptionsRegularExpression,
-				                                                        String.Empty,
-				                                                        vsFindTarget.vsFindTargetFiles, document.FullName, "",
-				                                                        vsFindResultsLocation.vsFindResultsNone);
-				    if (result == vsFindResult.vsFindResultReplaced)
-				    {
-					    // Triggers DocumentEvents_DocumentSaved event again?
-					    document.Save();
-				    }
-			    }
-			//}
-			//catch
-			//{
-			//}
+			if (IsTextFile(document.Name))
+			{
+				// Remove trailing whitespace
+				vsFindResult result = document.DTE.Find.FindReplace(vsFindAction.vsFindActionReplaceAll, @"[ \t]+\r?$",
+				                                                    (int) vsFindOptions.vsFindOptionsRegularExpression,
+				                                                    String.Empty,
+				                                                    vsFindTarget.vsFindTargetFiles, document.FullName, "",
+				                                                    vsFindResultsLocation.vsFindResultsNone);
+				if (result == vsFindResult.vsFindResultReplaced)
+				{
+					// Triggers DocumentEvents_DocumentSaved event again?
+					document.Save();
+				}
+			}
 	    }
 
-		private static readonly string[] FileExtensions = new string[] {".cs", ".vb", ".xml", ".txt", ".aspx", ".js", ".build", ".cpp", ".c", ".h"};
-		private static readonly string[] FileNames = new string[] {"web.config"};
+		private static readonly string[] FileExtensions = new string[]
+			{
+				".cs", ".vb",
+				".cpp", ".c", ".h", ".hpp",
+				".sql",
+				".xml", ".xsd",  ".xaml", ".resx", ".wsdl",
+				".aspx", ".ascx", ".asax", ".ashx", ".asmx", ".css", ".js", ".htm", ".html", ".cshtml",
+				".ps1", ".psm1", ".cmd", ".bat",
+				".tt",
+				".txt", ".nuspec", ".build", ".config", ".manifest"
+			};
+		private static readonly string[] FileNames = new string[] {};
 
 		private static bool IsTextFile(string fileName)
 		{
