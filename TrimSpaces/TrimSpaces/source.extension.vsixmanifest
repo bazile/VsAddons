@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="b91960d6-68fd-4fd7-8162-a36b437524d2" Version="1.0.1" Language="en-US" Publisher="Vasily Petruhin" />
+		<Identity Id="b91960d6-68fd-4fd7-8162-a36b437524d2" Version="1.0.2" Language="en-US" Publisher="Vasily Petruhin" />
 		<DisplayName>TrimSpaces</DisplayName>
 		<Description xml:space="preserve">Trims trailing spaces in text files</Description>
+		<License>licence.txt</License>
 		<ReleaseNotes>ReleaseNotes.En.txt</ReleaseNotes>
 	</Metadata>
 	<Installation InstalledByMsi="false" AllUsers="true">

@@ -1,0 +1,3 @@
+﻿This software is free for commercial and non-commercial use.
+
+Sources are available at https://github.com/bazile/VsAddons/tree/master/TrimSpaces
