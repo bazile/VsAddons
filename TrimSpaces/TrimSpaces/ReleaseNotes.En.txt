@@ -1,4 +1,9 @@
-﻿v1.0.1
+﻿v1.1
+------------------------------
+
+ + Extension is now installed on a per-use basis allowing to disable it if required
+
+v1.0.1
 ------------------------------
 
  + Added more text file extensions
