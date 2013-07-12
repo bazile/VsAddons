@@ -14,12 +14,12 @@ namespace VasilyPetruhin.TrimSpaces
 	/// The minimum requirement for a class to be considered a valid package for Visual Studio
 	/// is to implement the IVsPackage interface and register itself with the shell.
 	/// This package uses the helper classes defined inside the Managed Package Framework (MPF)
-	/// to do it: it derives from the Package class that provides the implementation of the 
-	/// IVsPackage interface and uses the registration attributes defined in the framework to 
+	/// to do it: it derives from the Package class that provides the implementation of the
+	/// IVsPackage interface and uses the registration attributes defined in the framework to
 	/// register itself and its components with the shell.
 	/// </summary>
 	[PackageRegistration(UseManagedResourcesOnly = true)] // This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is a package.
-	[InstalledProductRegistration("#110", "#112", "1.0.3", IconResourceID = 400)] // This attribute is used to register the information needed to show this package in the Help/About dialog of Visual Studio.
+	[InstalledProductRegistration("#110", "#112", "1.1", IconResourceID = 400)] // This attribute is used to register the information needed to show this package in the Help/About dialog of Visual Studio.
 	[Guid(GuidList.guidTrimSpacesPkgString)]
 	[ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
 	public sealed class TrimSpacesPackage : Package
@@ -28,9 +28,9 @@ namespace VasilyPetruhin.TrimSpaces
 
 		///// <summary>
 		///// Default constructor of the package.
-		///// Inside this method you can place any initialization code that does not require 
-		///// any Visual Studio service because at this point the package object is created but 
-		///// not sited yet inside Visual Studio environment. The place to do all the other 
+		///// Inside this method you can place any initialization code that does not require
+		///// any Visual Studio service because at this point the package object is created but
+		///// not sited yet inside Visual Studio environment. The place to do all the other
 		///// initialization is the Initialize method.
 		///// </summary>
 		//public TrimSpacesPackage()
@@ -83,7 +83,7 @@ namespace VasilyPetruhin.TrimSpaces
 				vsFindResult result = document.DTE.Find.FindReplace(vsFindAction.vsFindActionReplaceAll, @"[ \t]+\r?$",
 																	(int) vsFindOptions.vsFindOptionsRegularExpression,
 																	String.Empty,
-																	vsFindTarget.vsFindTargetFiles, document.FullName, "",
+																	vsFindTarget.vsFindTargetFiles, document.FullName, "\r",
 																	vsFindResultsLocation.vsFindResultsNone);
 				if (result == vsFindResult.vsFindResultReplaced)
 				{
