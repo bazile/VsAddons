@@ -4,13 +4,26 @@
 		<Header>
 			<Title>todo</Title>
 			<Shortcut>todo</Shortcut>
+			<Description>Code snippet for TODO comment</Description>
 			<SnippetTypes>
 				<SnippetType>Expansion</SnippetType>
 			</SnippetTypes>
 		</Header>
 		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>author</ID>
+					<ToolTip>Author name of TODO comment</ToolTip>
+					<!--Default>var</Default-->
+				</Literal>
+				<Literal>
+					<ID>date</ID>
+					<ToolTip>Date when TODO comment was created</ToolTip>
+					<!--Default>item</Default-->
+				</Literal>
+			</Declarations>
 			<Code Language="CSharp">
-				<![CDATA[// TODO: [vasily.petruhin @ ] $end$]]>
+				<![CDATA[// TODO: [$author$ @ $date$] $end$]]>
 			</Code>
 		</Snippet>
 	</CodeSnippet>
